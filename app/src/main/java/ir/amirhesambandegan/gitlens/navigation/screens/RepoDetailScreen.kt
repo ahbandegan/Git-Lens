@@ -20,7 +20,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
@@ -32,7 +31,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -62,7 +60,8 @@ import ir.amirhesambandegan.easify_haptic.performClick
 import ir.amirhesambandegan.easify_haptic.performSuccess
 import ir.amirhesambandegan.easify_ui.EasifyExpandableText
 import ir.amirhesambandegan.easify_ui.bounceClick
-import ir.amirhesambandegan.gitlens.model.RepoItem
+import ir.amirhesambandegan.gitlens.component.BadgeChip
+import ir.amirhesambandegan.gitlens.component.RepoStatItem
 import ir.amirhesambandegan.gitlens.viewModel.RepoDetailViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -88,53 +87,50 @@ fun RepoDetailScreen(
         viewModel.loadRepo(owner, repoName)
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = repoName,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        fontWeight = FontWeight.Bold
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = {
-                        haptic.performClick()
-                        onBackClick()
-                    }) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
-                        )
-                    }
-                },
-                actions = {
-                    IconButton(onClick = {
-                        haptic.performClick()
-                        val url = repo?.htmlUrl ?: "https://github.com/$owner/$repoName"
-                        context.shareText(url, "Share $repoName repository")
-                    }) {
-                        Icon(
-                            imageVector = Icons.Default.Share,
-                            contentDescription = "Share Repo"
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = colors.background,
-                    titleContentColor = colors.onBackground
+    Column(
+        Modifier.background(colors.background)
+    ) {
+        TopAppBar(
+            title = {
+                Text(
+                    text = repoName,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    fontWeight = FontWeight.Bold
                 )
+            },
+            navigationIcon = {
+                IconButton(onClick = {
+                    haptic.performClick()
+                    onBackClick()
+                }) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Back"
+                    )
+                }
+            },
+            actions = {
+                IconButton(onClick = {
+                    haptic.performClick()
+                    val url = repo?.htmlUrl ?: "https://github.com/$owner/$repoName"
+                    context.shareText(url, "Share $repoName repository")
+                }) {
+                    Icon(
+                        imageVector = Icons.Default.Share,
+                        contentDescription = "Share Repo"
+                    )
+                }
+            },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = colors.background,
+                titleContentColor = colors.onBackground
             )
-        },
-        containerColor = colors.background
-    ) { innerPadding ->
+        )
         if (isLoading && repo == null) {
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                    .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
                 CircularProgressIndicator()
@@ -142,8 +138,7 @@ fun RepoDetailScreen(
         } else if (errorMessage != null && repo == null) {
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                    .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -158,8 +153,7 @@ fun RepoDetailScreen(
             val r = repo!!
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                    .fillMaxSize(),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
@@ -428,64 +422,5 @@ fun RepoDetailScreen(
                 }
             }
         }
-    }
-}
-
-@Composable
-fun BadgeChip(
-    text: String,
-    bgColor: Color,
-    textColor: Color
-) {
-    Box(
-        modifier = Modifier
-            .background(color = bgColor, shape = RoundedCornerShape(8.dp))
-            .padding(horizontal = 8.dp, vertical = 4.dp)
-    ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.labelSmall,
-            color = textColor,
-            fontWeight = FontWeight.Medium
-        )
-    }
-}
-
-@Composable
-fun RepoStatItem(
-    title: String,
-    value: String,
-    icon: androidx.compose.ui.graphics.vector.ImageVector?,
-    iconColor: Color
-) {
-    val colors = MaterialTheme.colorScheme
-    val typography = MaterialTheme.typography
-
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            if (icon != null) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    tint = iconColor,
-                    modifier = Modifier.size(16.dp)
-                )
-                Spacer(modifier = Modifier.width(4.dp))
-            }
-            Text(
-                text = value,
-                style = typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = colors.primary
-            )
-        }
-        Spacer(modifier = Modifier.height(2.dp))
-        Text(
-            text = title,
-            style = typography.labelSmall,
-            color = colors.outline
-        )
     }
 }
