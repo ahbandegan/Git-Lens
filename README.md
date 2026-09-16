@@ -4,7 +4,6 @@
 [![Compose](https://img.shields.io/badge/Jetpack%20Compose-2026.09.00-green.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
 [![Material 3](https://img.shields.io/badge/Material%203-Enabled-purple.svg)](https://m3.material.io)
 [![Koin](https://img.shields.io/badge/Koin-4.2.2-orange.svg)](https://insert-koin.io)
-[![Ktor](https://img.shields.io/badge/Ktor-3.x-red.svg)](https://ktor.io)
 [![EasifyAndroid](https://img.shields.io/badge/Easify--Android-2.2.0-teal.svg)](https://github.com/ahbandegan/Easify-Android)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL3-yellow.svg)](LICENSE)
 
