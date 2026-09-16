@@ -8,15 +8,13 @@ plugins {
 android {
     namespace = "ir.amirhesambandegan.gitlens"
     compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
+        version = release(37)
     }
 
     defaultConfig {
         applicationId = "ir.amirhesambandegan.gitlens"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -27,6 +25,8 @@ android {
         release {
             optimization {
                 enable = false
+                isMinifyEnabled = true
+                isShrinkResources = true
             }
         }
     }
@@ -41,9 +41,15 @@ android {
 
 dependencies {
     implementation(libs.easify.network)
+    implementation(libs.easify.ui)
+    implementation(libs.easify.validation)
+    implementation(libs.easify.context)
+    implementation(libs.easify.format)
+    implementation(libs.easify.haptic)
 
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
@@ -53,6 +59,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
 
+    implementation(libs.androidx.appcompat)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
