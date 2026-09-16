@@ -116,8 +116,3 @@ Developed by **Amirhesam Bandegan**
 - Project: [Git-Lens](https://github.com/ahbandegan/Git-Lens)
 - Ecosystem: [Easify-Android](https://github.com/ahbandegan/Easify-Android)
 
----
-
-## 📄 License
-
-This project is open-source and licensed under the [GPL-3.0 License](LICENSE).
