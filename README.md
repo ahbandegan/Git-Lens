@@ -6,7 +6,7 @@
 [![Koin](https://img.shields.io/badge/Koin-4.2.2-orange.svg)](https://insert-koin.io)
 [![Ktor](https://img.shields.io/badge/Ktor-3.x-red.svg)](https://ktor.io)
 [![EasifyAndroid](https://img.shields.io/badge/Easify--Android-2.2.0-teal.svg)](https://github.com/ahbandegan/Easify-Android)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL3-yellow.svg)](LICENSE)
 
 **GitLens** is a modern, responsive, and elegant Android application designed to thoroughly inspect GitHub users, developer profiles, and open-source repositories. Built entirely with **Jetpack Compose**, **Material 3**, and powered by the **EasifyAndroid** modular ecosystem.
 
@@ -121,4 +121,4 @@ Developed by **Amirhesam Bandegan**
 
 ## 📄 License
 
-This project is open-source and licensed under the [MIT License](LICENSE).
+This project is open-source and licensed under the [GPL-3.0 License](LICENSE).
